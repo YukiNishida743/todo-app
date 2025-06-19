@@ -13,6 +13,10 @@ function addTask() {
         alert('タスクを入力してください！');
         return;
     }
+    if (text.length > 100) {
+        alert('タスクは100文字以内にしてください！');
+        return;
+    }
     const highPriorityKeywords = ['テスト', '締切', '会議', 'レポート', '試験', '提出'];
     const priority = highPriorityKeywords.some(keyword => text.toLowerCase().includes(keyword)) ? 'High' : 'Low';
     const task = {
@@ -20,7 +24,7 @@ function addTask() {
         text: text,
         priority: priority,
         completed: false,
-        createdAt: formatDateTime(new Date()) // 日時追加
+        createdAt: formatDateTime(new Date())
     };
     saveTask(task);
     renderTask(task);
@@ -61,13 +65,35 @@ function deleteTask(id) {
 function refreshTasks() {
     const list = document.getElementById('taskList');
     list.innerHTML = '';
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => renderTask(task));
+    try {
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const filter = document.getElementById('filterTasks').value;
+        if (filter === 'high') {
+            tasks = tasks.filter(task => task.priority === 'High');
+        } else if (filter === 'completed') {
+            tasks = tasks.filter(task => task.completed);
+        }
+        tasks.forEach(task => renderTask(task));
+    } catch (e) {
+        console.error('LocalStorageエラー:', e);
+        localStorage.setItem('tasks', JSON.stringify([]));
+    }
 }
+document.getElementById('filterTasks').addEventListener('change', refreshTasks);
 document.querySelector('button').addEventListener('click', addTask);
 document.addEventListener('DOMContentLoaded', refreshTasks);
 document.getElementById('taskInput').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         addTask();
     }
+});
+document.getElementById('toggleTheme').addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+});
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+    }
+    refreshTasks();
 });

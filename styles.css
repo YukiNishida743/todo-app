@@ -1,17 +1,31 @@
+:root {
+    --bg-color: #f4f4f9;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #333;
+    --border-color: #eee;
+}
+.dark {
+    --bg-color: #333;
+    --card-bg: rgba(30, 30, 30, 0.9);
+    --text-color: #ddd;
+    --border-color: #555;
+}
 body {
     font-family: Arial, sans-serif;
-    background: url('background.jpg') no-repeat center center/cover;
+    background: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    transition: background 0.3s;
 }
 .container {
-    background: rgba(255, 255, 255, 0.9); /* 半透明でイラスト見える */
+    background: var(--card-bg);
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 500px;
 }
@@ -48,10 +62,23 @@ li {
     display: flex;
     align-items: center;
     padding: 12px 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     font-size: 16px;
     transition: background 0.2s;
     animation: fadeIn 0.3s ease-out;
+}
+#toggleTheme {
+    margin: 10px auto;
+    display: block;
+    padding: 8px 16px;
+    background: #666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#toggleTheme:hover {
+    background: #555;
 }
 li span {
     flex-grow: 1;
@@ -144,4 +171,13 @@ li {
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; transform: translateX(20px); } /* 右にスライド */
+}
+#filterTasks {
+    margin: 10px auto;
+    display: block;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
 }
