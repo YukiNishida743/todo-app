@@ -9,6 +9,7 @@ A modern ToDo app built with JavaScript, featuring AI-inspired task prioritizati
 - Font Awesome icons (✔, 🗑️, ★)
 - Responsive design with gradient background
 - Persistent storage using LocalStorage
+- dark mode
 
 ## Demo
 [Live Demo](https://YukiNishida743.github.io/todo-app)
