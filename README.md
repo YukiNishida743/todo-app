@@ -15,8 +15,8 @@ A modern ToDo app built with JavaScript, featuring AI-inspired task prioritizati
 [Live Demo](https://YukiNishida743.github.io/todo-app)
 
 ## Screenshot
-![ToDo App](scr<img width="1436" alt="screenshot" src="https://github.com/user-attachments/assets/eb6542f6-492f-4023-829f-c283b68c4d00" />
-eenshot.png)
+<img width="1436" alt="screenshot" src="https://github.com/user-attachments/assets/eb6542f6-492f-4023-829f-c283b68c4d00" />
+
 
 ## What I Learned
 - DOM manipulation, LocalStorage, and CSS animations
